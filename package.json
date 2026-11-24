@@ -1,0 +1,15 @@
+{
+  "name": "test-readonly-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "dev": "node --watch --env-file-if-exists=.env src/server.js",
+    "build:static": "node scripts/build-static.mjs",
+    "test": "node --test"
+  }
+}

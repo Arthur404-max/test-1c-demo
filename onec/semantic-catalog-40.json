@@ -1,0 +1,71 @@
+{
+  "catalogSize": 40,
+  "accessMode": "read-only",
+  "groups": [
+    {
+      "name": "Перевозки и рейсы",
+      "functions": [
+        { "name": "get_shipments_summary", "description": "Сводка перевозок за период", "status": "demo_implemented" },
+        { "name": "list_active_shipments", "description": "Рейсы в работе", "status": "demo_implemented" },
+        { "name": "get_shipments_list", "description": "Список перевозок с фильтрами", "status": "demo_implemented" },
+        { "name": "get_shipment_details", "description": "Карточка перевозки", "status": "demo_implemented" },
+        { "name": "get_shipments_by_customer", "description": "Перевозки клиента", "status": "planned" },
+        { "name": "get_shipments_by_route", "description": "Перевозки по маршруту", "status": "planned" },
+        { "name": "get_shipments_by_vehicle", "description": "Перевозки по автомобилю", "status": "planned" },
+        { "name": "get_shipments_by_driver", "description": "Перевозки по водителю", "status": "planned" },
+        { "name": "get_delayed_shipments", "description": "Рейсы с нарушением срока", "status": "planned" },
+        { "name": "get_unassigned_shipments", "description": "Перевозки без автомобиля или водителя", "status": "planned" }
+      ]
+    },
+    {
+      "name": "Клиенты",
+      "functions": [
+        { "name": "find_customer", "description": "Поиск клиента", "status": "demo_implemented" },
+        { "name": "get_customer_details", "description": "Карточка клиента", "status": "demo_implemented" },
+        { "name": "get_customer_contacts", "description": "Контакты клиента", "status": "planned" },
+        { "name": "get_customer_managers", "description": "Менеджеры клиента", "status": "planned" },
+        { "name": "get_customer_contracts", "description": "Договоры клиента", "status": "planned" },
+        { "name": "get_customer_tariffs", "description": "Тарифы по клиенту", "status": "planned" },
+        { "name": "get_customer_claims", "description": "Претензии по клиенту", "status": "planned" },
+        { "name": "get_inactive_customers", "description": "Клиенты без перевозок за период", "status": "planned" }
+      ]
+    },
+    {
+      "name": "Долги и расчёты",
+      "functions": [
+        { "name": "list_customer_debts", "description": "Задолженность клиентов", "status": "demo_implemented" },
+        { "name": "get_overdue_invoices", "description": "Просроченные счета", "status": "planned" },
+        { "name": "get_customer_payments", "description": "Поступления от клиента", "status": "planned" },
+        { "name": "get_receivables_aging", "description": "Возрастная структура дебиторки", "status": "planned" },
+        { "name": "get_customer_credit_limit", "description": "Кредитный лимит клиента", "status": "planned" },
+        { "name": "get_vendor_payables", "description": "Кредиторская задолженность", "status": "planned" },
+        { "name": "get_shipment_profitability", "description": "Маржинальность перевозки", "status": "planned" }
+      ]
+    },
+    {
+      "name": "Отчёты и показатели",
+      "functions": [
+        { "name": "build_report", "description": "Типовой read-only отчёт", "status": "demo_implemented" },
+        { "name": "get_dashboard_metrics", "description": "Ключевые показатели", "status": "demo_implemented" },
+        { "name": "get_monthly_comparison", "description": "Сравнение периодов", "status": "planned" },
+        { "name": "get_route_profitability", "description": "Маржинальность маршрутов", "status": "planned" },
+        { "name": "get_vehicle_utilization", "description": "Загрузка автомобилей", "status": "planned" },
+        { "name": "get_driver_performance", "description": "Показатели водителей", "status": "planned" },
+        { "name": "get_customer_concentration", "description": "Концентрация выручки по клиентам", "status": "planned" },
+        { "name": "get_plan_fact", "description": "План-факт перевозок", "status": "planned" }
+      ]
+    },
+    {
+      "name": "Справочники и правила",
+      "functions": [
+        { "name": "get_data_dictionary", "description": "Словарь доступных полей", "status": "demo_implemented" },
+        { "name": "get_status_dictionary", "description": "Справочник статусов", "status": "planned" },
+        { "name": "get_route_dictionary", "description": "Справочник маршрутов", "status": "planned" },
+        { "name": "get_vehicle_dictionary", "description": "Справочник автомобилей", "status": "planned" },
+        { "name": "get_driver_dictionary", "description": "Справочник водителей", "status": "planned" },
+        { "name": "get_business_rule", "description": "Бизнес-правило из регламентов", "status": "planned" },
+        { "name": "get_report_definition", "description": "Описание типового отчёта", "status": "planned" }
+      ]
+    }
+  ]
+}

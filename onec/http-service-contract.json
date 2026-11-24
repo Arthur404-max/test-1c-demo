@@ -1,0 +1,78 @@
+{
+  "serviceName": "AIReadOnly",
+  "implementationStatus": "requires_uat_metadata",
+  "baseUrl": "https://1c.example.local/ai_readonly/hs/ai",
+  "authentication": "Basic over TLS with a dedicated 1C service user",
+  "constraints": {
+    "httpMethods": ["GET"],
+    "directSqlFromLlm": false,
+    "writeOperations": false,
+    "responseLimitRows": 500,
+    "requestTimeoutSeconds": 15,
+    "audit": "Log user, tool, parameters, timestamp, row count and duration in 1C and in the backend"
+  },
+  "endpoints": [
+    {
+      "path": "/summary",
+      "tool": "get_shipments_summary",
+      "query": ["from", "to"],
+      "response": ["summary", "period", "metrics", "links", "dataSource"]
+    },
+    {
+      "path": "/active-shipments",
+      "tool": "list_active_shipments",
+      "query": ["routeFrom", "routeTo"],
+      "response": ["summary", "table", "links", "dataSource"]
+    },
+    {
+      "path": "/shipments",
+      "tool": "get_shipments_list",
+      "query": ["from", "to", "status"],
+      "response": ["summary", "period", "table", "links", "dataSource"]
+    },
+    {
+      "path": "/debts",
+      "tool": "list_customer_debts",
+      "query": ["asOf", "onlyOverdue", "minAmount"],
+      "response": ["summary", "asOf", "metrics", "table", "dataSource"]
+    },
+    {
+      "path": "/customers",
+      "tool": "find_customer",
+      "query": ["query"],
+      "response": ["summary", "table", "dataSource"]
+    },
+    {
+      "path": "/customers/{customerId}",
+      "tool": "get_customer_details",
+      "query": [],
+      "response": ["summary", "customer", "table", "links", "dataSource"]
+    },
+    {
+      "path": "/shipments/{shipmentId}",
+      "tool": "get_shipment_details",
+      "query": [],
+      "response": ["summary", "shipment", "links", "dataSource"]
+    },
+    {
+      "path": "/reports/{reportType}",
+      "tool": "build_report",
+      "query": ["from", "to"],
+      "response": ["summary", "period", "table", "dataSource"]
+    },
+    {
+      "path": "/metrics",
+      "tool": "get_dashboard_metrics",
+      "query": [],
+      "response": ["summary", "period", "metrics", "links", "dataSource"]
+    }
+  ],
+  "requiredUatInputs": [
+    "Exact platform and UAT configuration versions",
+    "Real metadata names for shipment documents, customers, statuses and settlement registers",
+    "Definition of a completed shipment and an active trip",
+    "Source of customer debt and overdue debt",
+    "Role and user mapping for access control",
+    "Rules for hiding personal and commercially sensitive fields"
+  ]
+}

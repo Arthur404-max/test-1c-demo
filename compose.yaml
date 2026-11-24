@@ -1,0 +1,25 @@
+name: test
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      HOST: 0.0.0.0
+      DATA_SOURCE: demo
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      ONEC_BASE_URL: ${ONEC_BASE_URL:-}
+      ONEC_USERNAME: ${ONEC_USERNAME:-}
+      ONEC_PASSWORD: ${ONEC_PASSWORD:-}
+      ONEC_PUBLIC_BASE_URL: ${ONEC_PUBLIC_BASE_URL:-}
+      DEMO_AUTH: "true"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

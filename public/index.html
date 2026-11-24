@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>test — помощник по данным 1С</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div>
+        <div class="brand-title">test</div>
+        <div class="brand-subtitle">Помощник по данным 1С:УАТ</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="login-screen" class="login-screen">
+      <div class="login-shell">
+        <section class="login-intro">
+          <div class="eyebrow">1С:УАТ · AI read-only</div>
+          <h1>Данные 1С.<br><span>На языке бизнеса.</span></h1>
+          <p class="lead">Спросите о перевозках, рейсах, клиентах или долгах. Ответ строится на данных и правилах семантического слоя.</p>
+          <div class="product-preview" aria-label="Пример ответа помощника">
+            <div class="preview-topbar">
+              <div class="preview-brand"><span class="preview-mark">AI</span><span>Помощник</span></div>
+              <span class="preview-mode">read-only</span>
+            </div>
+            <div class="preview-body">
+              <div class="preview-question">
+                <span class="preview-avatar">Вы</span>
+                <p>Сколько перевозок выполнили за прошлый месяц?</p>
+              </div>
+              <div class="preview-answer">
+                <div class="preview-answer-head">
+                  <span class="preview-avatar preview-avatar-ai">AI</span>
+                  <span>Ответ на основе данных</span>
+                </div>
+                <div class="preview-metrics">
+                  <div><span>Выполнено</span><strong>9</strong><small>перевозок</small></div>
+                  <div><span>Выручка</span><strong>1,71 млн ₽</strong><small>за октябрь</small></div>
+                  <div><span>Маржа</span><strong>22,3%</strong><small>+2,1 п.п.</small></div>
+                </div>
+                <div class="preview-source"><span class="preview-source-dot"></span>Источник: демо · 1 инструмент</div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-features"><span>Без прямого SQL</span><span>Без записи</span><span>С аудитом</span></div>
+          <div class="login-meta">Техническое демо · синтетические данные</div>
+        </section>
+
+        <section class="login-panel">
+          <div class="login-panel-head">
+            <h2>Выберите роль</h2>
+            <p>Посмотрите, как меняется набор доступных данных.</p>
+          </div>
+          <div class="role-grid" id="role-grid"></div>
+          <button class="primary-button login-button" id="login-button" type="button" disabled>Войти в демо</button>
+          <p class="login-footnote">Демо-авторизация. В production используется корпоративный вход или пользователь 1С.</p>
+        </section>
+      </div>
+    </section>
+
+    <section id="app-screen" class="app-screen" hidden>
+      <aside class="sidebar">
+        <div class="sidebar-user">
+          <div class="user-avatar" id="user-avatar">Д</div>
+          <div>
+            <div class="user-name" id="user-name">Диспетчер</div>
+            <div class="user-role" id="user-role">demo-dispatcher</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Разделы">
+          <button class="nav-button active" id="chat-nav" type="button">Чат</button>
+          <button class="nav-button" id="audit-nav" type="button" hidden>Журнал аудита</button>
+          <button class="nav-button" id="new-chat-button" type="button">Новый диалог</button>
+          <button class="nav-button nav-button-muted" id="logout-button" type="button">Выйти</button>
+        </nav>
+
+        <div class="sidebar-section">
+          <div class="sidebar-heading">Примеры вопросов</div>
+          <div id="sample-questions" class="sample-questions"></div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="status-dot"></div>
+          <span>Read-only semantic layer</span>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="workspace-header">
+          <div>
+            <h1 id="view-title">Диалог с помощником</h1>
+            <p id="view-subtitle">Ответы строятся на данных и правилах семантического слоя.</p>
+          </div>
+          <div class="source-chip" id="source-chip">Источник: демо</div>
+        </div>
+
+        <div id="chat-view" class="chat-view">
+          <div id="messages" class="messages" aria-live="polite">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-state-head">
+                <div class="empty-kicker">Быстрый старт</div>
+                <h2>Что хотите узнать?</h2>
+                <p>Выберите вопрос или сформулируйте свой.</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="composer" class="composer">
+            <textarea id="question-input" rows="1" maxlength="2000" placeholder="Задайте вопрос по данным 1С…" aria-label="Вопрос помощнику"></textarea>
+            <button class="send-button" id="send-button" type="submit" disabled aria-label="Отправить вопрос">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="M4 4l16 8-16 8 3-8-3-8zm3 8h13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+          <div class="composer-hint">Enter - отправить, Shift+Enter - новая строка, Ctrl+K - фокус на вопросе.</div>
+        </div>
+
+        <div id="audit-view" class="audit-view" hidden>
+          <div class="audit-summary" id="audit-summary"></div>
+          <div class="table-wrap" id="audit-table"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
